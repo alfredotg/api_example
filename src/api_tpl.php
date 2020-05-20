@@ -1,4 +1,8 @@
 <?php
+/*
+NOTE: This class is auto generated
+Do not edit the class manually.
+*/
 RestRouter::registre('/auth', 'post', 'RestAuth'); 
 
 abstract class RestAuthTpl {
