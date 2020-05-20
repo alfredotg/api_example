@@ -10,11 +10,11 @@ abstract class RestAuthTpl {
     
       
     if(!isset($r['username']))
-      throw new ApiMissParametr('username');
+      throw new ApiMissParameter('username');
     $username = strval($r['username']);
       
     if(!isset($r['password']))
-      throw new ApiMissParametr('password');
+      throw new ApiMissParameter('password');
     $password = strval($r['password']);
       
     
@@ -42,7 +42,7 @@ abstract class RestFolderChildrenTpl {
     
       
     if(!isset($r['folder_id']))
-      throw new ApiMissParametr('folder_id');
+      throw new ApiMissParameter('folder_id');
     $folder_id = intval($r['folder_id']);
       
     
