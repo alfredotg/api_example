@@ -1,0 +1,153 @@
+swagger: '2.0'
+info:
+  description: 'This is bit5 server'
+  version: 0.0.1
+  title: OpenAPI bit5
+  license:
+    name: Apache-2.0
+    url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
+host: bit5.ru
+basePath: /api/v0
+tags:
+  - name: user
+    description: Operations about user
+schemes:
+  - http
+paths:
+  /auth:
+    post:
+      summary: Authorisation
+      description: ''
+      operationId: auth
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+        - name: username
+          in: formData
+          required: true
+          type: string
+        - name: password
+          in: formData
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Auth token
+          schema:
+            $ref: '#/definitions/AuthRes'
+  /user/me:
+    get:
+      summary: Get my profile
+      description: ''
+      operationId: userMe
+      consumes:
+        - application/x-www-form-urlencoded
+      produces:
+        - application/json
+      parameters:
+      responses:
+        '200':
+          description: User profile
+          schema:
+            $ref: '#/definitions/UserProfile'
+  /folder/children:
+    get:
+      summary: Get folder's children
+      operationId: folderChildren
+      produces:
+        - application/json
+      parameters:
+        - name: folder_id
+          in: query
+          required: false
+          format: int64
+          type: integer
+          description: if empty - will return children for root folder
+      responses:
+        '200':
+          description: Folders
+          schema:
+            $ref: '#/definitions/FoldersRes'
+definitions:
+  Ball:
+    title: Ball
+    description: A ball
+    type: object
+    properties:
+      hits:
+        type: integer
+        format: int64
+  AuthRes:
+    title: 
+    description: Result of authorisation
+    type: object
+    properties:
+      ok:
+        type: boolean
+      token:
+        type: string
+  UserProfile:
+    title: 
+    description: User profile
+    type: object
+    properties:
+      id: 
+        type: integer
+        format: int64
+      nick:
+        type: string
+      iconUrl:
+        type: string
+  UploadRes:
+    title: Result of upload
+    description: 
+    type: object
+    properties:
+      ok: 
+        type: boolean
+      errorMessage:
+        type: string
+      content:
+        $ref: '#/definitions/MemberContent'
+  MemberContent:
+    title: MemberContent
+    description: Member's file
+    type: object
+    properties:
+      id: 
+        type: integer
+        format: int64
+      title:
+        type: string
+      url:
+        type: string
+      preview_url:
+        type: string
+  FoldersRes:
+    title: Folders list
+    description: 
+    type: object
+    properties:
+      parent_id:
+        type: integer
+        format: int64
+      list:
+        type: array
+        items:
+          $ref: '#/definitions/MemberFolder'
+  MemberFolder:
+    title: MemberFolder
+    description: Member's folder
+    type: object
+    properties:
+      id: 
+        type: integer
+        format: int64
+      title:
+        type: string
+      url:
+        type: string
+      cover_url:
+        type: string
