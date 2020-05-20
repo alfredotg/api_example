@@ -1,12 +1,12 @@
 swagger: '2.0'
 info:
-  description: 'This is bit5 server'
+  description: 'This is server'
   version: 0.0.1
-  title: OpenAPI bit5
+  title: OpenAPI 
   license:
     name: Apache-2.0
     url: 'https://www.apache.org/licenses/LICENSE-2.0.html'
-host: bit5.ru
+host: some.ru
 basePath: /api/v0
 tags:
   - name: user
